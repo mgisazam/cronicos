@@ -1,0 +1,32 @@
+server:
+  servlet:
+    context-path:
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+  datasource:
+    url: jdbc:mariadb://localhost:3306/cronicos
+    username: root
+    password: Lcic071304
+    driver-class-name: org.mariadb.jdbc.Driver
+    hikari:
+      minimumIdle: 2
+      max-lifetime: 350000
+      maximum-pool-size: 10
+      idleTimeout: 120000
+      connection-timeout: 350000
+      leakDetectionThreshold: 350000
+      validation-timeout: 350000
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+
