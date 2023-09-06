@@ -9,34 +9,40 @@ import com.cronicos.interfaces.iPersona;
 import com.cronicos.modelo.PersonaModelo;
 import java.util.List;
 import java.util.Optional;
+
+import com.cronicos.repository.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author mgisazam
  */
+
+@Service
 public class PersonaService implements iPersonaService{
+
     @Autowired
-    private iPersona data;
+    private PersonaRepository personaRepository;
     
     @Override
     public List<PersonaModelo> listar() {
-       return(List<PersonaModelo>) data.findAll();
+       return personaRepository.findAll();
     }
 
     @Override
     public Optional<PersonaModelo> listarId(int id) {
-       return null;
+       return personaRepository.findById(id);
     }
 
     @Override
     public int save(PersonaModelo p) {
-        return 0;
+        return personaRepository.save(p).getId();
     }
 
     @Override
-    public void delete(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void delete(int id) {
+         personaRepository.deleteById(id);
     }
 
 }
